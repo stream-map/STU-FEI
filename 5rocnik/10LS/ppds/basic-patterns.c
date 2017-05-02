@@ -176,7 +176,7 @@ void mutex(void)
  */
 sem_t s_multiplex;
 
-void _5worker_cs(void)
+void _5_cs(void)
 {
 	assert( sem_wait(&s_mutex) == 0 );
 	++counter;
@@ -195,7 +195,7 @@ void *_5worker(void *arg)
 {
 	assert( sem_wait(&s_multiplex) == 0 );
 	//CS critical section
-	_5worker_cs();
+	_5_cs();
 	assert( sem_post(&s_multiplex) == 0 );
 
 	pthread_exit((void*) 0);
